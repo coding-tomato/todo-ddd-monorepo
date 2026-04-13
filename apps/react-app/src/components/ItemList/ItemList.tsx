@@ -1,5 +1,5 @@
 import type { ListItem } from '@repo/core';
-import { ListItemRow } from '../ListItemRow/ListItemRow';
+import { ListItemRow } from './ListItemRow/ListItemRow';
 import styles from './ItemList.module.css';
 
 interface ItemListProps {
