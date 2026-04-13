@@ -1,13 +1,13 @@
 import { useState, useMemo } from 'react';
 import { LocalStorageListRepository } from '@repo/core';
+import type { ListRepository } from '@repo/core';
 import { useTextList } from '../hooks/useTextList';
 import { ErrorBoundary } from './ErrorBoundary';
 import { ItemList } from './ItemList';
 import { ActionBar } from './ActionBar';
 import { AddItemModal } from './AddItemModal';
 
-export function App() {
-  const repo = useMemo(() => new LocalStorageListRepository(), []);
+export function TextListApp({ repo }: { repo: ListRepository }) {
   const {
     list, error, canUndo,
     handleAddItem, handleDeleteSelected, handleDeleteById,
@@ -43,4 +43,9 @@ export function App() {
       </div>
     </div>
   );
+}
+
+export function App() {
+  const repo = useMemo(() => new LocalStorageListRepository(), []);
+  return <TextListApp repo={repo} />;
 }
