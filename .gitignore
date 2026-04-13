@@ -4,7 +4,7 @@ dist/
 *.local
 *.tsbuildinfo
 .tsc-out/
-test-results/
+test-results
 
 docs/workspace
 .github

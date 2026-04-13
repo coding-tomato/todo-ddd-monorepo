@@ -22,13 +22,13 @@ export function ActionBar({ canUndo, hasSelection, onUndo, onDeleteSelected, onO
         onClick={onDeleteSelected}
         disabled={!hasSelection}
       >
-        Delete
+        DELETE
       </button>
       <button
         className="action-bar__add-btn"
         onClick={onOpenAdd}
       >
-        + Add
+        ADD
       </button>
     </div>
   );

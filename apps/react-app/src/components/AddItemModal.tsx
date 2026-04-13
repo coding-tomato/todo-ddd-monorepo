@@ -18,7 +18,7 @@ export function AddItemModal({ onAdd, onClose }: AddItemModalProps) {
   return (
     <div className="add-item-modal__overlay">
       <div className="add-item-modal">
-        <h2 className="add-item-modal__title">Add Item</h2>
+        <h2 className="add-item-modal__title">Add item to list</h2>
         <input
           className="add-item-modal__input"
           type="text"
@@ -26,7 +26,7 @@ export function AddItemModal({ onAdd, onClose }: AddItemModalProps) {
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => { if (e.key === 'Enter') handleSubmit(); }}
           autoFocus
-          placeholder="Enter item text..."
+          placeholder="Type the text here..."
         />
         <div className="add-item-modal__actions">
           <button
