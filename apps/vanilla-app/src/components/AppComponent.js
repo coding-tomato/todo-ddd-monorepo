@@ -7,9 +7,9 @@ import { AddItemModal } from './AddItemModal.js';
 import { withErrorHandling } from '../errorHandler.js';
 
 export class AppComponent extends Component {
-  constructor($root) {
+  constructor($root, repo = null) {
     super($root);
-    this._repo = new LocalStorageListRepository();
+    this._repo = repo ?? new LocalStorageListRepository();
     this._history = new CommandHistory();
     this._list = loadList(this._repo);
     this._initDOM();
