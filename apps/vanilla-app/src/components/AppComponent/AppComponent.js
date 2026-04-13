@@ -1,10 +1,10 @@
-import { Component } from './Component.js';
+import { Component } from '../shared/Component.js';
 import { LocalStorageListRepository, CommandHistory, loadList,
          AddItemCommand, DeleteSelectedCommand, DeleteByIdCommand } from '@repo/core';
-import { ItemListComponent } from './ItemListComponent.js';
-import { ActionBarComponent } from './ActionBarComponent.js';
-import { AddItemModal } from './AddItemModal.js';
-import { withErrorHandling } from '../errorHandler.js';
+import { ItemListComponent } from '../ItemListComponent/ItemListComponent.js';
+import { ActionBarComponent } from '../ActionBarComponent/ActionBarComponent.js';
+import { AddItemModal } from '../AddItemModal/AddItemModal.js';
+import { withErrorHandling } from '../../utils/errorHandler.js';
 import './AppComponent.css';
 
 export class AppComponent extends Component {

@@ -1,11 +1,11 @@
 import { useState, useMemo } from 'react';
 import { LocalStorageListRepository } from '@repo/core';
 import type { ListRepository } from '@repo/core';
-import { useTextList } from '../hooks/useTextList';
-import { ErrorBoundary } from './ErrorBoundary';
-import { ItemList } from './ItemList';
-import { ActionBar } from './ActionBar';
-import { AddItemModal } from './AddItemModal';
+import { useTextList } from '../../hooks/useTextList';
+import { ErrorBoundary } from '../ErrorBoundary/ErrorBoundary';
+import { ItemList } from '../ItemList/ItemList';
+import { ActionBar } from '../ActionBar/ActionBar';
+import { AddItemModal } from '../AddItemModal/AddItemModal';
 import styles from './App.module.css';
 
 export function TextListApp({ repo }: { repo: ListRepository }) {

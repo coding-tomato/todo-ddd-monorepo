@@ -1,5 +1,5 @@
-import { Component } from './Component.js';
-import { withErrorHandling } from '../errorHandler.js';
+import { Component } from '../shared/Component.js';
+import { withErrorHandling } from '../../utils/errorHandler.js';
 import './ActionBarComponent.css';
 
 export class ActionBarComponent extends Component {

@@ -1,4 +1,4 @@
-import { Component } from './Component.js';
+import { Component } from '../shared/Component.js';
 import './ItemListComponent.css';
 
 export class ItemListComponent extends Component {

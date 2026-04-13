@@ -1,7 +1,7 @@
 import { describe, it, expect, afterEach, vi } from 'vitest';
 import { axe } from 'vitest-axe';
-import { AppComponent } from '../components/AppComponent.js';
-import { InMemoryListRepository } from '../__tests__/InMemoryListRepository.js';
+import { AppComponent } from './AppComponent.js';
+import { InMemoryListRepository } from '../../__tests__/InMemoryListRepository.js';
 
 function setup() {
   // handleError looks for #app in the document

@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { axe } from 'vitest-axe';
 import { TextListApp } from './App';
-import { InMemoryListRepository } from '../__tests__/InMemoryListRepository';
+import { InMemoryListRepository } from '../../__tests__/InMemoryListRepository';
 
 function setup() {
   const repo = new InMemoryListRepository();

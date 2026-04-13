@@ -1,5 +1,5 @@
-import { Component } from './Component.js';
-import { withErrorHandling } from '../errorHandler.js';
+import { Component } from '../shared/Component.js';
+import { withErrorHandling } from '../../utils/errorHandler.js';
 import './AddItemModal.css';
 
 export class AddItemModal extends Component {
