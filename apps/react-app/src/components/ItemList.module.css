@@ -1,0 +1,11 @@
+/* === Item List === */
+.itemList {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0.5rem;
+  max-height: 18.75rem;
+  min-height: 10rem;
+  overflow-y: auto;
+  background: var(--color-background);
+  border: 0.0625rem solid var(--color-border);
+}

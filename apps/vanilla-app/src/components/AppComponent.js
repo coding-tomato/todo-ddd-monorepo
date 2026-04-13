@@ -5,6 +5,7 @@ import { ItemListComponent } from './ItemListComponent.js';
 import { ActionBarComponent } from './ActionBarComponent.js';
 import { AddItemModal } from './AddItemModal.js';
 import { withErrorHandling } from '../errorHandler.js';
+import './AppComponent.css';
 
 export class AppComponent extends Component {
   constructor($root, repo = null) {

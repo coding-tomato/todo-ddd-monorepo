@@ -1,4 +1,5 @@
 import type { ListItem } from '@repo/core';
+import styles from './ListItemRow.module.css';
 
 interface ListItemRowProps {
   item: ListItem;
@@ -10,7 +11,8 @@ interface ListItemRowProps {
 export function ListItemRow({ item, onSelect, onToggle, onDelete }: ListItemRowProps) {
   return (
     <li
-      className={`list-item-row${item.isSelected ? ' list-item-row--selected' : ''}`}
+      className={`${styles.row}${item.isSelected ? ` ${styles.selected}` : ''}`}
+      data-selected={item.isSelected || undefined}
       onClick={(e) => {
         if (e.ctrlKey || e.metaKey) {
           onToggle(item.id);
@@ -20,7 +22,7 @@ export function ListItemRow({ item, onSelect, onToggle, onDelete }: ListItemRowP
       }}
       onDoubleClick={() => onDelete(item.id)}
     >
-      <span className="list-item-row__text">{item.text}</span>
+      <span className={styles.text}>{item.text}</span>
     </li>
   );
 }

@@ -6,6 +6,7 @@ import { ErrorBoundary } from './ErrorBoundary';
 import { ItemList } from './ItemList';
 import { ActionBar } from './ActionBar';
 import { AddItemModal } from './AddItemModal';
+import styles from './App.module.css';
 
 export function TextListApp({ repo }: { repo: ListRepository }) {
   const {
@@ -16,16 +17,16 @@ export function TextListApp({ repo }: { repo: ListRepository }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="app">
-      <div className="card">
+    <div className={styles.app}>
+      <div className={styles.card}>
         <ErrorBoundary>
-          <h1 className="card__heading">This is a technical proof</h1>
-          <p className="card__description">
+          <h1 className={styles.heading}>This is a technical proof</h1>
+          <p className={styles.description}>
             Lorem ipsum dolor sit amet consectetur adipiscing, elit mus primis nec inceptos. Lacinia
             habitasse arcu molestie maecenas cursus quam nunc, hendrerit posuere augue fames
             dictumst placerat porttitor, dis mi pharetra vestibulum venenatis phasellus.
           </p>
-          {error && <div className="error-banner" role="alert">{error}</div>}
+          {error && <div className={styles.errorBanner} role="alert">{error}</div>}
           <ItemList
             items={list.getItems()}
             onSelect={handleSelectItem}

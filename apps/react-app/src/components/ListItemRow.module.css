@@ -1,0 +1,22 @@
+/* === List Item Row === */
+.row {
+  padding: 0.75rem 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.row.selected {
+  background: var(--color-primary);
+  color: white;
+}
+
+.row.selected .text {
+  color: white;
+}
+
+.text {
+  flex: 1;
+  color: var(--color-text);
+}

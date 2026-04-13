@@ -1,0 +1,40 @@
+/* === Action Bar === */
+.action-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.action-bar__undo-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: transparent;
+  border: 0.09375rem solid var(--color-primary);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+.action-bar__delete-btn {
+  background: transparent;
+  color: var(--color-primary);
+  border: 0.09375rem solid var(--color-primary);
+  border-radius: 9999px;
+  height: 2.5rem;
+  padding: 0 1.5rem;
+}
+
+.action-bar__add-btn {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  height: 2.5rem;
+  padding: 0 1.5rem;
+  margin-left: auto;
+}

@@ -1,5 +1,6 @@
 import { Component } from './Component.js';
 import { withErrorHandling } from '../errorHandler.js';
+import './ActionBarComponent.css';
 
 export class ActionBarComponent extends Component {
   constructor($root, { onUndo, onDelete, onOpenAdd }) {

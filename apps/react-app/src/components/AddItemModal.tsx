@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from './AddItemModal.module.css';
 
 interface AddItemModalProps {
   onAdd: (text: string) => void;
@@ -16,11 +17,11 @@ export function AddItemModal({ onAdd, onClose }: AddItemModalProps) {
   };
 
   return (
-    <div className="add-item-modal__overlay">
-      <div className="add-item-modal" role="dialog" aria-modal="true" aria-labelledby="add-item-modal-title">
-        <h2 className="add-item-modal__title" id="add-item-modal-title">Add item to list</h2>
+    <div className={styles.overlay}>
+      <div className={styles.modal} role="dialog" aria-modal="true" aria-labelledby="add-item-modal-title">
+        <h2 className={styles.title} id="add-item-modal-title">Add item to list</h2>
         <input
-          className="add-item-modal__input"
+          className={styles.input}
           id="add-item-modal-input"
           type="text"
           value={inputValue}
@@ -30,15 +31,15 @@ export function AddItemModal({ onAdd, onClose }: AddItemModalProps) {
           placeholder="Type the text here..."
           aria-label="Item text"
         />
-        <div className="add-item-modal__actions">
+        <div className={styles.actions}>
           <button
-            className="add-item-modal__add-btn"
+            className={styles.addBtn}
             onClick={handleSubmit}
             disabled={inputValue.trim() === ''}
           >
             ADD
           </button>
-          <button className="add-item-modal__cancel-btn" onClick={onClose}>
+          <button className={styles.cancelBtn} onClick={onClose}>
             CANCEL
           </button>
         </div>

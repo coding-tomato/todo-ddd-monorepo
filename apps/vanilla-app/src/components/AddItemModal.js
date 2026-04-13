@@ -1,5 +1,6 @@
 import { Component } from './Component.js';
 import { withErrorHandling } from '../errorHandler.js';
+import './AddItemModal.css';
 
 export class AddItemModal extends Component {
   constructor($root, { onAdd, onClose }) {

@@ -1,5 +1,6 @@
 import type { ListItem } from '@repo/core';
 import { ListItemRow } from './ListItemRow';
+import styles from './ItemList.module.css';
 
 interface ItemListProps {
   items: ReadonlyArray<ListItem>;
@@ -10,7 +11,7 @@ interface ItemListProps {
 
 export function ItemList({ items, onSelect, onToggle, onDelete }: ItemListProps) {
   return (
-    <ul className="item-list">
+    <ul className={styles.itemList}>
       {items.map((item) => (
         <ListItemRow
           key={item.id}

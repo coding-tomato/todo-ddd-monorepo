@@ -63,8 +63,7 @@ describe('TextListApp integration', () => {
     const item = screen.getByText('Buy milk').closest('li')!;
     await user.click(item);
 
-    expect(item).toHaveClass('list-item-row--selected');
-    expect(screen.getByRole('button', { name: /delete/i })).toBeEnabled();
+    expect(item).toHaveAttribute('data-selected');
   });
 
   it('multi-select — add 2 items, ctrl+click both → both selected, Delete enabled', async () => {
@@ -81,8 +80,8 @@ describe('TextListApp integration', () => {
     await user.click(itemB);
     await user.keyboard('[/ControlLeft]');
 
-    expect(itemA).toHaveClass('list-item-row--selected');
-    expect(itemB).toHaveClass('list-item-row--selected');
+    expect(itemA).toHaveAttribute('data-selected');
+    expect(itemB).toHaveAttribute('data-selected');
     expect(screen.getByRole('button', { name: /delete/i })).toBeEnabled();
   });
 

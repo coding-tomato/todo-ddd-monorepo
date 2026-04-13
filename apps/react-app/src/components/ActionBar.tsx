@@ -1,3 +1,5 @@
+import styles from './ActionBar.module.css';
+
 interface ActionBarProps {
   canUndo: boolean;
   hasSelection: boolean;
@@ -8,9 +10,9 @@ interface ActionBarProps {
 
 export function ActionBar({ canUndo, hasSelection, onUndo, onDeleteSelected, onOpenAdd }: ActionBarProps) {
   return (
-    <div className="action-bar">
+    <div className={styles.actionBar}>
       <button
-        className="action-bar__undo-btn"
+        className={styles.undoBtn}
         onClick={onUndo}
         disabled={!canUndo}
         aria-label="Undo"
@@ -18,14 +20,14 @@ export function ActionBar({ canUndo, hasSelection, onUndo, onDeleteSelected, onO
         ↩
       </button>
       <button
-        className="action-bar__delete-btn"
+        className={styles.deleteBtn}
         onClick={onDeleteSelected}
         disabled={!hasSelection}
       >
         DELETE
       </button>
       <button
-        className="action-bar__add-btn"
+        className={styles.addBtn}
         onClick={onOpenAdd}
       >
         + ADD

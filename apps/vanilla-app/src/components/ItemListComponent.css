@@ -1,0 +1,29 @@
+/* === Item List === */
+.item-list-container {
+  border: 0.0625rem solid var(--color-border);
+  border-radius: 0.25rem;
+  background: var(--color-background);
+  overflow: hidden;
+}
+
+.item-list {
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  max-height: 20rem;
+  overflow-y: auto;
+}
+
+.item-list__item {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  user-select: none;
+  color: var(--color-text);
+  background: var(--color-background);
+}
+
+.item-list__item--selected {
+  background: var(--color-primary);
+  color: white;
+  border-bottom-color: transparent;
+}

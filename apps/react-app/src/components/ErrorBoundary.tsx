@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './ErrorBoundary.module.css';
 
 interface State { hasError: boolean; }
 
@@ -8,7 +9,7 @@ export class ErrorBoundary extends React.Component<React.PropsWithChildren, Stat
   componentDidCatch(error: Error, info: React.ErrorInfo) { console.error(error, info); }
   render() {
     if (this.state.hasError) {
-      return <div className="error-boundary__fallback">Something went wrong. Please refresh the page.</div>;
+      return <div className={styles.fallback}>Something went wrong. Please refresh the page.</div>;
     }
     return this.props.children;
   }
