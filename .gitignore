@@ -2,3 +2,9 @@ node_modules/
 dist/
 .pnpm-store/
 *.local
+*.tsbuildinfo
+.tsc-out/
+test-results/
+
+docs/workspace
+.github
