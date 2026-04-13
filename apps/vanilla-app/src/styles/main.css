@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
 /* Design tokens + reset */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -12,7 +14,7 @@
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: var(--color-text);
   min-height: 100vh;
   background: var(--gradient-bg);
@@ -26,46 +28,55 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
+  padding: 1rem;
 }
 
 /* Card */
 .card {
   background: var(--color-surface);
-  border-radius: 16px;
-  box-shadow: 0 4px 24px var(--color-shadow);
-  padding: 24px;
+  border-radius: 1rem;
+  box-shadow: 0 0.25rem 1.5rem var(--color-shadow);
+  padding: 2rem;
   width: 100%;
-  max-width: 480px;
+  max-width: 43.75rem;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 1rem;
 }
 .card__heading {
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 400;
   color: var(--color-text);
+  text-align: center;
 }
 .card__description {
   font-size: 0.875rem;
   color: var(--color-text);
   opacity: 0.7;
+  text-align: center;
 }
 
 /* Item list */
+.item-list-container {
+  border: 0.0625rem solid var(--color-border);
+  border-radius: 0.25rem;
+  background: var(--color-background);
+  overflow: hidden;
+}
 .item-list {
   list-style: none;
   padding: 0;
-  margin: 8px 0;
-  max-height: 320px;
+  margin: 0;
+  max-height: 20rem;
   overflow-y: auto;
 }
 .item-list__item {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 1rem;
+  border-bottom: 0.0625rem solid var(--color-border);
   cursor: pointer;
   user-select: none;
   color: var(--color-text);
+  background: var(--color-background);
 }
 .item-list__item:last-child { border-bottom: none; }
 .item-list__item--selected {
@@ -78,15 +89,14 @@ body {
 .action-bar {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding-top: 16px;
-  border-top: 1px solid var(--color-border);
+  gap: 0.5rem;
+  padding-top: 0.5rem;
 }
 
 /* Buttons */
 button {
   cursor: pointer;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   transition: opacity 0.15s;
 }
@@ -95,25 +105,26 @@ button:disabled {
   cursor: not-allowed;
 }
 .action-bar__undo-btn {
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   background: transparent;
-  border: 1.5px solid var(--color-primary);
+  border: 0.09375rem solid var(--color-primary);
   color: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 1.125rem;
   flex-shrink: 0;
 }
 .action-bar__delete-btn,
 .modal__cancel-btn {
   background: transparent;
   color: var(--color-primary);
-  border: 1.5px solid var(--color-primary);
+  border: 0.09375rem solid var(--color-primary);
   border-radius: 9999px;
-  padding: 8px 24px;
+  height: 2.5rem;
+  padding: 0 1.5rem;
 }
 .action-bar__add-btn,
 .modal__add-btn {
@@ -121,7 +132,8 @@ button:disabled {
   color: white;
   border: none;
   border-radius: 9999px;
-  padding: 8px 24px;
+  height: 2.5rem;
+  padding: 0 1.5rem;
   margin-left: auto;
 }
 
@@ -138,14 +150,14 @@ button:disabled {
 .modal-overlay--hidden { display: none; }
 .modal {
   background: var(--color-surface);
-  border-radius: 16px;
-  padding: 24px;
+  border-radius: 1rem;
+  padding: 1.5rem;
   width: 100%;
-  max-width: 400px;
-  box-shadow: 0 4px 24px var(--color-shadow);
+  max-width: 25rem;
+  box-shadow: 0 0.25rem 1.5rem var(--color-shadow);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1rem;
 }
 .modal__label {
   font-size: 0.875rem;
@@ -154,29 +166,29 @@ button:disabled {
 }
 .modal__input {
   width: 100%;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 14px;
+  border: 0.0625rem solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
   box-sizing: border-box;
 }
 .modal__input:focus {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 1px;
+  outline: 0.125rem solid var(--color-primary);
+  outline-offset: 0.0625rem;
 }
 .modal__actions {
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 /* Error banner */
 .error-banner {
   background: #FFF3CD;
-  border: 1px solid #FFEAA7;
+  border: 0.0625rem solid #FFEAA7;
   color: #856404;
-  padding: 10px 16px;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  font-size: 14px;
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
 }

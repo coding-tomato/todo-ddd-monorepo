@@ -20,7 +20,10 @@ export class AppComponent extends Component {
     this.$root.innerHTML = `
       <div class="card">
         <h1 class="card__heading">This is a technical proof</h1>
-        <p class="card__description">A Text List Manager built with DDD and clean architecture.</p>
+        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipiscing, 
+        elit mus primis nec inceptos. Lacinia habitasse arcu molestie maecenas cursus quam nunc, 
+        hendrerit posuere augue fames dictumst placerat porttitor, dis mi pharetra vestibulum 
+        venenatis phasellus..</p>
         <div class="item-list-container"></div>
         <div class="action-bar">
           <button class="action-bar__undo-btn" aria-label="Undo">↩</button>
