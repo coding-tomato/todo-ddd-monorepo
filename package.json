@@ -1,0 +1,11 @@
+{
+  "name": "text-list-manager",
+  "private": true,
+  "scripts": {
+    "build": "pnpm --filter @repo/core build && pnpm -r --filter !@repo/core build",
+    "test": "pnpm -r test",
+    "dev:react": "pnpm --filter react-app dev",
+    "dev:vanilla": "pnpm --filter vanilla-app dev",
+    "lint": "pnpm -r lint"
+  }
+}
