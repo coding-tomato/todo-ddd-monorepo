@@ -1,1 +1,233 @@
 /* styles — added in ISSUE-9 */
+
+/* === Global Reset === */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family, 'Montserrat', sans-serif);
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+/* === Design Tokens === */
+:root {
+  --color-primary: #324BFF;
+  --color-surface: #FFFFFF;
+  --color-background: #F7F7F7;
+  --color-border: #CCCCCC;
+  --color-text: #333333;
+  --color-shadow: #0000001F;
+  --gradient-end: #C2E9FB;
+  --gradient-bg: linear-gradient(135deg, #A1C4FD 0%, #C2E9FB 100%);
+  --font-family: 'Montserrat', sans-serif;
+}
+
+/* === Layout === */
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-bg);
+  padding: 16px;
+}
+
+.card {
+  background: var(--color-surface);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px var(--color-shadow);
+  width: 100%;
+  max-width: 480px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card__heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.card__description {
+  font-size: 0.875rem;
+  color: var(--color-text);
+  opacity: 0.7;
+  margin: 0;
+}
+
+/* === Item List === */
+.item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.list-item-row {
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.list-item-row:last-child {
+  border-bottom: none;
+}
+
+.list-item-row--selected {
+  background: var(--color-primary);
+  color: white;
+}
+
+.list-item-row--selected .list-item-row__text {
+  color: white;
+}
+
+.list-item-row__text {
+  flex: 1;
+  color: var(--color-text);
+}
+
+/* === Action Bar === */
+.action-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 8px;
+}
+
+.action-bar__undo-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--color-primary);
+  background: transparent;
+  color: var(--color-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.action-bar__delete-btn {
+  border-radius: 9999px;
+  padding: 8px 20px;
+  border: 1px solid var(--color-primary);
+  background: transparent;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.action-bar__add-btn {
+  border-radius: 9999px;
+  padding: 8px 24px;
+  border: none;
+  background: var(--color-primary);
+  color: white;
+  cursor: pointer;
+  margin-left: auto;
+  font-weight: 600;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* === Modal === */
+.add-item-modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.add-item-modal {
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 4px 24px var(--color-shadow);
+}
+
+.add-item-modal__title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.add-item-modal__input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.add-item-modal__input:focus {
+  outline: 2px solid var(--color-primary);
+}
+
+.add-item-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.add-item-modal__add-btn {
+  border-radius: 9999px;
+  padding: 8px 24px;
+  border: none;
+  background: var(--color-primary);
+  color: white;
+  cursor: pointer;
+  margin-left: auto;
+  font-weight: 600;
+}
+
+.add-item-modal__cancel-btn {
+  border-radius: 9999px;
+  padding: 8px 20px;
+  border: 1px solid var(--color-primary);
+  background: transparent;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+/* === Error / Misc === */
+.error-banner {
+  background: #FFF3CD;
+  border: 1px solid #FFEAA7;
+  color: #856404;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+}
+
+.error-boundary__fallback {
+  padding: 24px;
+  text-align: center;
+  color: var(--color-text);
+  opacity: 0.7;
+}
