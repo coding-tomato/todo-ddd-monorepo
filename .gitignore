@@ -6,5 +6,4 @@ dist/
 .tsc-out/
 test-results
 
-docs/workspace
 .github

@@ -1,4 +1,5 @@
 import { describe, it, expect, afterEach, vi } from 'vitest';
+import { axe } from 'vitest-axe';
 import { AppComponent } from '../components/AppComponent.js';
 import { InMemoryListRepository } from '../__tests__/InMemoryListRepository.js';
 
@@ -187,5 +188,36 @@ describe('AppComponent integration tests', () => {
     const banner = document.querySelector('.error-banner');
     expect(banner).not.toBeNull();
     expect(banner.getAttribute('role')).toBe('alert');
+  });
+});
+
+describe('AppComponent accessibility', () => {
+  it('passes axe on initial empty state', async () => {
+    const { $root } = setup();
+    const results = await axe($root);
+    expect(results).toHaveNoViolations();
+  });
+
+  it('passes axe with items in the list', async () => {
+    const { $root } = setup();
+    addItem($root, 'Buy milk');
+    addItem($root, 'Walk the dog');
+    const results = await axe($root);
+    expect(results).toHaveNoViolations();
+  });
+
+  it('passes axe with modal open', async () => {
+    const { $root } = setup();
+    $root.querySelector('.action-bar__add-btn').click();
+    const results = await axe($root);
+    expect(results).toHaveNoViolations();
+  });
+
+  it('passes axe with error banner visible', async () => {
+    const { $root, repo } = setup();
+    vi.spyOn(repo, 'save').mockImplementation(() => { throw new Error('fail'); });
+    addItem($root, 'Item A');
+    const results = await axe($root);
+    expect(results).toHaveNoViolations();
   });
 });

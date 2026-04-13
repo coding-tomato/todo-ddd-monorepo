@@ -17,16 +17,18 @@ export function AddItemModal({ onAdd, onClose }: AddItemModalProps) {
 
   return (
     <div className="add-item-modal__overlay">
-      <div className="add-item-modal">
-        <h2 className="add-item-modal__title">Add item to list</h2>
+      <div className="add-item-modal" role="dialog" aria-modal="true" aria-labelledby="add-item-modal-title">
+        <h2 className="add-item-modal__title" id="add-item-modal-title">Add item to list</h2>
         <input
           className="add-item-modal__input"
+          id="add-item-modal-input"
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => { if (e.key === 'Enter') handleSubmit(); }}
           autoFocus
           placeholder="Type the text here..."
+          aria-label="Item text"
         />
         <div className="add-item-modal__actions">
           <button

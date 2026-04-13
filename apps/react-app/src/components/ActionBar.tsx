@@ -28,7 +28,7 @@ export function ActionBar({ canUndo, hasSelection, onUndo, onDeleteSelected, onO
         className="action-bar__add-btn"
         onClick={onOpenAdd}
       >
-        ADD
+        + ADD
       </button>
     </div>
   );

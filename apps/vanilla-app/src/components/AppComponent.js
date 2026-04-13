@@ -32,9 +32,9 @@ export class AppComponent extends Component {
         </div>
       </div>
       <div class="modal-overlay modal-overlay--hidden">
-        <div class="modal">
-          <label class="modal__label">Add item to list</label>
-          <input class="modal__input" type="text" placeholder="Type the text here…" />
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+          <label class="modal__label" id="modal-title" for="modal-input">Add item to list</label>
+          <input class="modal__input" id="modal-input" type="text" placeholder="Type the text here…" />
           <div class="modal__actions">
             <button class="modal__add-btn" disabled>ADD</button>
             <button class="modal__cancel-btn">CANCEL</button>

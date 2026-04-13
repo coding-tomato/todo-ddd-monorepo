@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { axe } from 'vitest-axe';
 import { TextListApp } from './App';
 import { InMemoryListRepository } from '../__tests__/InMemoryListRepository';
 
@@ -13,7 +14,7 @@ function setup() {
 
 async function addItem(user: ReturnType<typeof userEvent.setup>, text: string) {
   await user.click(screen.getByRole('button', { name: /\+ add/i }));
-  await user.type(screen.getByPlaceholderText(/enter item text/i), text);
+  await user.type(screen.getByPlaceholderText(/type the text here/i), text);
   await user.click(screen.getByRole('button', { name: /^add$/i }));
 }
 
@@ -30,13 +31,13 @@ describe('TextListApp integration', () => {
     const { user } = setup();
 
     await user.click(screen.getByRole('button', { name: /\+ add/i }));
-    expect(screen.getByPlaceholderText(/enter item text/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/type the text here/i)).toBeInTheDocument();
 
-    await user.type(screen.getByPlaceholderText(/enter item text/i), 'Buy milk');
+    await user.type(screen.getByPlaceholderText(/type the text here/i), 'Buy milk');
     await user.click(screen.getByRole('button', { name: /^add$/i }));
 
     expect(screen.getByText('Buy milk')).toBeInTheDocument();
-    expect(screen.queryByPlaceholderText(/enter item text/i)).not.toBeInTheDocument();
+    expect(screen.queryByPlaceholderText(/type the text here/i)).not.toBeInTheDocument();
   });
 
   it('add item — empty blocked: ADD button disabled when input empty, stays disabled after clear', async () => {
@@ -46,7 +47,7 @@ describe('TextListApp integration', () => {
     const modalAddBtn = screen.getByRole('button', { name: /^add$/i });
     expect(modalAddBtn).toBeDisabled();
 
-    const input = screen.getByPlaceholderText(/enter item text/i);
+    const input = screen.getByPlaceholderText(/type the text here/i);
     await user.type(input, 'hello');
     expect(modalAddBtn).toBeEnabled();
 
@@ -163,5 +164,36 @@ describe('TextListApp integration', () => {
     await addItem(user, 'Item B');
 
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  });
+});
+
+describe('TextListApp accessibility', () => {
+  it('passes axe on initial empty state', async () => {
+    const { container } = setup();
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+
+  it('passes axe with items in the list', async () => {
+    const { container, user } = setup();
+    await addItem(user, 'Buy milk');
+    await addItem(user, 'Walk the dog');
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+
+  it('passes axe with modal open', async () => {
+    const { container, user } = setup();
+    await user.click(screen.getByRole('button', { name: /add/i }));
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+
+  it('passes axe with error banner visible', async () => {
+    const { container, repo, user } = setup();
+    vi.spyOn(repo, 'save').mockImplementation(() => { throw new Error('fail'); });
+    await addItem(user, 'Item A');
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 });
