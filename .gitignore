@@ -3,7 +3,7 @@ dist/
 .pnpm-store/
 *.local
 *.tsbuildinfo
-.tsc-out/
+.tsc-out
 test-results
 
 .github

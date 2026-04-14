@@ -41,7 +41,7 @@ test("no axe violations with modal open", async ({ page }) => {
 
 test("no axe violations with items in the list", async ({ page }) => {
   await page.getByRole("button", { name: /\+ add/i }).click();
-  await page.getByPlaceholder(/type the text here/i).fill("Test item");
+  await page.getByPlaceholder(/enter item text/i).fill("Test item");
   await page.getByRole("button", { name: /^ADD$/i }).click();
   const violations = await runAxe(page);
   expect(violations).toEqual([]);

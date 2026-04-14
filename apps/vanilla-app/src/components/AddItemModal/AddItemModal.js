@@ -31,6 +31,7 @@ export class AddItemModal extends Component {
     });
     this.$.input.addEventListener("keydown", (e) => {
       if (e.key === "Enter" && this.$.input.value.trim()) {
+        e.preventDefault();
         withErrorHandling(() => {
           this._onAdd(this.$.input.value.trim());
           this.$.input.value = "";
@@ -38,8 +39,35 @@ export class AddItemModal extends Component {
         })();
       }
     });
+    // Escape closes the modal
+    this.$root.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") this._onClose();
+    });
+    // Focus trap: keep Tab/Shift+Tab inside the dialog
+    const dialog = this.$root.querySelector('[role="dialog"]');
+    dialog.addEventListener("keydown", (e) => {
+      if (e.key !== "Tab") return;
+      const focusable = Array.from(
+        dialog.querySelectorAll('button:not([disabled]), input')
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
   }
-  show() {
+  show(openerElement = null) {
+    this._opener = openerElement;
     this.$root.classList.remove("modal-overlay--hidden");
     this.$.input.focus();
     this.$.addBtn.disabled = true;
@@ -47,5 +75,9 @@ export class AddItemModal extends Component {
   hide() {
     this.$root.classList.add("modal-overlay--hidden");
     this.$.input.value = "";
+    if (this._opener) {
+      this._opener.focus();
+      this._opener = null;
+    }
   }
 }

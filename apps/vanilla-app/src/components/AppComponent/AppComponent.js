@@ -25,19 +25,21 @@ export class AppComponent extends Component {
   }
   _initDOM() {
     this.$root.innerHTML = `
-      <div class="card">
-        <h1 class="card__heading">This is a technical proof</h1>
-        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipiscing, 
-        elit mus primis nec inceptos. Lacinia habitasse arcu molestie maecenas cursus quam nunc, 
-        hendrerit posuere augue fames dictumst placerat porttitor, dis mi pharetra vestibulum 
-        venenatis phasellus..</p>
-        <div class="item-list-container"></div>
-        <div class="action-bar">
-          <button class="action-bar__undo-btn" aria-label="Undo">↩</button>
-          <button class="action-bar__delete-btn">DELETE</button>
-          <button class="action-bar__add-btn">ADD</button>
+      <main>
+        <div class="card">
+          <h1 class="card__heading">This is a technical proof</h1>
+          <p class="card__description">Lorem ipsum dolor sit amet consectetur adipiscing,
+          elit mus primis nec inceptos. Lacinia habitasse arcu molestie maecenas cursus quam nunc,
+          hendrerit posuere augue fames dictumst placerat porttitor, dis mi pharetra vestibulum
+          venenatis phasellus..</p>
+          <div class="item-list-container"></div>
+          <div class="action-bar">
+            <button class="action-bar__undo-btn" aria-label="Undo">↩</button>
+            <button class="action-bar__delete-btn">DELETE</button>
+            <button class="action-bar__add-btn">ADD</button>
+          </div>
         </div>
-      </div>
+      </main>
       <div class="modal-overlay modal-overlay--hidden">
         <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
           <label class="modal__label" id="modal-title" for="modal-input">Add item to list</label>
@@ -48,7 +50,9 @@ export class AppComponent extends Component {
           </div>
         </div>
       </div>
+      <div class="sr-only" aria-live="polite" aria-atomic="true"></div>
     `;
+    this.$liveRegion = this.$root.querySelector("[aria-live]");
   }
   _initComponents() {
     this._itemList = new ItemListComponent(
@@ -86,7 +90,7 @@ export class AppComponent extends Component {
           );
           this._renderAll();
         },
-        onOpenAdd: () => this._modal.show(),
+        onOpenAdd: () => this._modal.show(this.$root.querySelector(".action-bar__add-btn")),
       }
     );
     this._modal = new AddItemModal(this.$root.querySelector(".modal-overlay"), {
@@ -100,6 +104,15 @@ export class AppComponent extends Component {
     });
   }
   _renderAll() {
+    const newCount = this._list.getItems().length;
+    if (this._prevCount !== undefined && newCount !== this._prevCount) {
+      const diff = newCount - this._prevCount;
+      this.$liveRegion.textContent =
+        diff > 0
+          ? `Item added. ${newCount} item${newCount === 1 ? "" : "s"} in list.`
+          : `Item deleted. ${newCount} item${newCount === 1 ? "" : "s"} in list.`;
+    }
+    this._prevCount = newCount;
     this._itemList.render(this._list);
     this._actionBar.render(this._list, this._history.canUndo);
   }

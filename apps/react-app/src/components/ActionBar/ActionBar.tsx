@@ -1,3 +1,4 @@
+import type React from "react";
 import styles from "./ActionBar.module.css";
 
 interface ActionBarProps {
@@ -6,6 +7,7 @@ interface ActionBarProps {
   onUndo: () => void;
   onDeleteSelected: () => void;
   onOpenAdd: () => void;
+  addBtnRef?: React.RefObject<HTMLButtonElement>;
 }
 
 export function ActionBar({
@@ -14,6 +16,7 @@ export function ActionBar({
   onUndo,
   onDeleteSelected,
   onOpenAdd,
+  addBtnRef,
 }: ActionBarProps) {
   return (
     <div className={styles.actionBar}>
@@ -34,7 +37,12 @@ export function ActionBar({
       >
         DELETE
       </button>
-      <button type="button" className={styles.addBtn} onClick={onOpenAdd}>
+      <button
+        ref={addBtnRef}
+        type="button"
+        className={styles.addBtn}
+        onClick={onOpenAdd}
+      >
         + ADD
       </button>
     </div>

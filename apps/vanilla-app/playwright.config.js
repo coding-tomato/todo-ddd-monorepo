@@ -3,7 +3,7 @@ export default defineConfig({
   testDir: "./e2e",
   use: { baseURL: "http://localhost:5174" },
   webServer: {
-    command: "pnpm dev -- --port 5174",
+    command: "pnpm dev",
     url: "http://localhost:5174",
     reuseExistingServer: !process.env.CI,
   },

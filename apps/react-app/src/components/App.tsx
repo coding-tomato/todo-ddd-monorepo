@@ -1,6 +1,6 @@
 import type { ListRepository } from "@repo/core";
 import { LocalStorageListRepository } from "@repo/core";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useTextList } from "../hooks/useTextList";
 import { ActionBar } from "./ActionBar/ActionBar";
 import { AddItemModal } from "./AddItemModal/AddItemModal";
@@ -21,9 +21,32 @@ export function TextListApp({ repo }: { repo: ListRepository }) {
     handleUndo,
   } = useTextList(repo);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [announcement, setAnnouncement] = useState("");
+  const addBtnRef = useRef<HTMLButtonElement>(null);
+
+  const openModal = useCallback(() => setIsModalOpen(true), []);
+
+  const closeModal = useCallback(() => {
+    setIsModalOpen(false);
+    addBtnRef.current?.focus();
+  }, []);
+
+  const handleAddWithAnnounce = useCallback(
+    (text: string) => {
+      handleAddItem(text);
+      setAnnouncement("Added to list");
+      closeModal();
+    },
+    [handleAddItem, closeModal]
+  );
+
+  const handleDeleteWithAnnounce = useCallback(() => {
+    handleDeleteSelected();
+    setAnnouncement("Deleted from list");
+  }, [handleDeleteSelected]);
 
   return (
-    <div className={styles.app}>
+    <main className={styles.app}>
       <div className={styles.card}>
         <ErrorBoundary>
           <h1 className={styles.heading}>This is a technical proof</h1>
@@ -48,21 +71,23 @@ export function TextListApp({ repo }: { repo: ListRepository }) {
             canUndo={canUndo}
             hasSelection={list.getItems().some((i) => i.isSelected)}
             onUndo={handleUndo}
-            onDeleteSelected={handleDeleteSelected}
-            onOpenAdd={() => setIsModalOpen(true)}
+            onDeleteSelected={handleDeleteWithAnnounce}
+            onOpenAdd={openModal}
+            addBtnRef={addBtnRef}
           />
           {isModalOpen && (
-            <AddItemModal
-              onAdd={(text) => {
-                handleAddItem(text);
-                setIsModalOpen(false);
-              }}
-              onClose={() => setIsModalOpen(false)}
-            />
+            <AddItemModal onAdd={handleAddWithAnnounce} onClose={closeModal} />
           )}
         </ErrorBoundary>
       </div>
-    </div>
+      <div
+        aria-live="polite"
+        aria-atomic="true"
+        className={styles.srOnly}
+      >
+        {announcement}
+      </div>
+    </main>
   );
 }
 
