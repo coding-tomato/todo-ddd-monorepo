@@ -21,9 +21,8 @@ async function runAxe(page: Parameters<Parameters<typeof test>[1]>[0]["page"]) {
 }
 
 test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => localStorage.clear());
   await page.goto("/");
-  await page.evaluate(() => localStorage.clear());
-  await page.reload();
 });
 
 // --- Automated axe scans ---

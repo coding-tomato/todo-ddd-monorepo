@@ -1,10 +1,8 @@
 import { expect, test } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
-  // Navigate first so localStorage is accessible (same origin), then clear and reload
+  await page.addInitScript(() => localStorage.clear());
   await page.goto("/");
-  await page.evaluate(() => localStorage.clear());
-  await page.reload();
 });
 
 // Helper to add item via modal

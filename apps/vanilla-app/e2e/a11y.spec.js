@@ -18,9 +18,8 @@ const actionBarAddBtn = (page) =>
   page.locator(".action-bar").getByRole("button", { name: "ADD" });
 
 test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => localStorage.clear());
   await page.goto("/");
-  await page.evaluate(() => localStorage.clear());
-  await page.reload();
 });
 
 // --- Automated axe scans ---
