@@ -28,7 +28,8 @@ export function AddItemModal({ onAdd, onClose }: AddItemModalProps) {
           addBtnRef.current,
           cancelBtnRef.current,
         ].filter(
-          (el): el is HTMLElement => el !== null && !el.hasAttribute("disabled")
+          (el): el is HTMLInputElement | HTMLButtonElement =>
+            el !== null && !el.hasAttribute("disabled")
         );
         if (focusable.length === 0) return;
         const first = focusable[0];
@@ -36,12 +37,12 @@ export function AddItemModal({ onAdd, onClose }: AddItemModalProps) {
         if (e.shiftKey) {
           if (document.activeElement === first) {
             e.preventDefault();
-            last.focus();
+            last?.focus();
           }
         } else {
           if (document.activeElement === last) {
             e.preventDefault();
-            first.focus();
+            first?.focus();
           }
         }
       }
