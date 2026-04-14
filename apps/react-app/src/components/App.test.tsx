@@ -1,9 +1,10 @@
-import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
-import { TextListApp } from './App/App';
+
 import { InMemoryListRepository } from '../__tests__/InMemoryListRepository';
+import { TextListApp } from './App';
 
 function setup() {
   const repo = new InMemoryListRepository();

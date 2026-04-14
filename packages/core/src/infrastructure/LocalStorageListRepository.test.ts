@@ -19,6 +19,7 @@ describe('LocalStorageListRepository', () => {
     const loaded = repo.load();
 
     expect(loaded).not.toBeNull();
+    // biome-ignore lint/style/noNonNullAssertion: non-null is asserted by expect above
     const items = loaded!.getItems();
     expect(items).toHaveLength(2);
     expect(items[0].id).toBe(item1.id);
