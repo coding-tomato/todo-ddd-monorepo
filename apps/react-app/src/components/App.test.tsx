@@ -15,7 +15,7 @@ function setup() {
 
 async function addItem(user: ReturnType<typeof userEvent.setup>, text: string) {
   await user.click(screen.getByRole("button", { name: /\+ add/i }));
-  await user.type(screen.getByPlaceholderText(/type the text here/i), text);
+  await user.type(screen.getByPlaceholderText(/enter item text/i), text);
   await user.click(screen.getByRole("button", { name: /^add$/i }));
 }
 
@@ -33,18 +33,18 @@ describe("TextListApp integration", () => {
 
     await user.click(screen.getByRole("button", { name: /\+ add/i }));
     expect(
-      screen.getByPlaceholderText(/type the text here/i)
+      screen.getByPlaceholderText(/enter item text/i)
     ).toBeInTheDocument();
 
     await user.type(
-      screen.getByPlaceholderText(/type the text here/i),
+      screen.getByPlaceholderText(/enter item text/i),
       "Buy milk"
     );
     await user.click(screen.getByRole("button", { name: /^add$/i }));
 
     expect(screen.getByText("Buy milk")).toBeInTheDocument();
     expect(
-      screen.queryByPlaceholderText(/type the text here/i)
+      screen.queryByPlaceholderText(/enter item text/i)
     ).not.toBeInTheDocument();
   });
 
@@ -55,7 +55,7 @@ describe("TextListApp integration", () => {
     const modalAddBtn = screen.getByRole("button", { name: /^add$/i });
     expect(modalAddBtn).toBeDisabled();
 
-    const input = screen.getByPlaceholderText(/type the text here/i);
+    const input = screen.getByPlaceholderText(/enter item text/i);
     await user.type(input, "hello");
     expect(modalAddBtn).toBeEnabled();
 
