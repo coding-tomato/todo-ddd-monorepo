@@ -1,4 +1,4 @@
-# Todo App
+# Gestor de Listas de Textos
 
 Este monorepo contiene dos aplicaciones: una en React y otra en Vanilla JS, ambas implementan la misma funcionalidad para manejar una lista de textos.
 

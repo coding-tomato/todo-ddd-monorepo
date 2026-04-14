@@ -48,7 +48,7 @@ export class AddItemModal extends Component {
     dialog.addEventListener("keydown", (e) => {
       if (e.key !== "Tab") return;
       const focusable = Array.from(
-        dialog.querySelectorAll('button:not([disabled]), input')
+        dialog.querySelectorAll("button:not([disabled]), input")
       );
       if (focusable.length === 0) return;
       const first = focusable[0];

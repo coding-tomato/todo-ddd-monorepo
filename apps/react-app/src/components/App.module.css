@@ -57,4 +57,19 @@
   padding: 0.625rem 0.875rem;
   border-radius: 0.5rem;
   font-size: 0.875rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.errorBanner button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-size: 0.875rem;
+  padding: 0;
+  line-height: 1;
+  flex-shrink: 0;
 }

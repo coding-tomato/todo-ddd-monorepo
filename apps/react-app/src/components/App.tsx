@@ -13,6 +13,7 @@ export function TextListApp({ repo }: { repo: ListRepository }) {
     list,
     error,
     canUndo,
+    clearError,
     handleAddItem,
     handleDeleteSelected,
     handleDeleteById,
@@ -59,6 +60,13 @@ export function TextListApp({ repo }: { repo: ListRepository }) {
           {error && (
             <div className={styles.errorBanner} role="alert">
               {error}
+              <button
+                type="button"
+                onClick={clearError}
+                aria-label="Dismiss error"
+              >
+                ✕
+              </button>
             </div>
           )}
           <ItemList
@@ -80,11 +88,7 @@ export function TextListApp({ repo }: { repo: ListRepository }) {
           )}
         </ErrorBoundary>
       </div>
-      <div
-        aria-live="polite"
-        aria-atomic="true"
-        className={styles.srOnly}
-      >
+      <div aria-live="polite" aria-atomic="true" className={styles.srOnly}>
         {announcement}
       </div>
     </main>

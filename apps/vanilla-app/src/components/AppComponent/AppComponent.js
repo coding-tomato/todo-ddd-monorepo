@@ -31,12 +31,12 @@ export class AppComponent extends Component {
           <p class="card__description">Lorem ipsum dolor sit amet consectetur adipiscing,
           elit mus primis nec inceptos. Lacinia habitasse arcu molestie maecenas cursus quam nunc,
           hendrerit posuere augue fames dictumst placerat porttitor, dis mi pharetra vestibulum
-          venenatis phasellus..</p>
+          venenatis phasellus.</p>
           <div class="item-list-container"></div>
           <div class="action-bar">
             <button class="action-bar__undo-btn" aria-label="Undo">↩</button>
             <button class="action-bar__delete-btn">DELETE</button>
-            <button class="action-bar__add-btn">ADD</button>
+            <button class="action-bar__add-btn">+ ADD</button>
           </div>
         </div>
       </main>
@@ -90,7 +90,8 @@ export class AppComponent extends Component {
           );
           this._renderAll();
         },
-        onOpenAdd: () => this._modal.show(this.$root.querySelector(".action-bar__add-btn")),
+        onOpenAdd: () =>
+          this._modal.show(this.$root.querySelector(".action-bar__add-btn")),
       }
     );
     this._modal = new AddItemModal(this.$root.querySelector(".modal-overlay"), {

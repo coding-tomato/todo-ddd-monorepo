@@ -32,9 +32,7 @@ describe("TextListApp integration", () => {
     const { user } = setup();
 
     await user.click(screen.getByRole("button", { name: /\+ add/i }));
-    expect(
-      screen.getByPlaceholderText(/enter item text/i)
-    ).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/enter item text/i)).toBeInTheDocument();
 
     await user.type(
       screen.getByPlaceholderText(/enter item text/i),
