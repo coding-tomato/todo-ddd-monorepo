@@ -1,57 +1,57 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { TextList } from './TextList.js';
-import type { ListItem } from './ListItem.js';
+import { beforeEach, describe, expect, it } from "vitest";
+import type { ListItem } from "./ListItem.js";
+import { TextList } from "./TextList.js";
 
-describe('TextList', () => {
+describe("TextList", () => {
   let list: TextList;
 
   beforeEach(() => {
     list = new TextList();
   });
 
-  describe('addItem', () => {
-    it('returns an item with a UUID id and appends it to getItems()', () => {
-      const item = list.addItem('hello');
+  describe("addItem", () => {
+    it("returns an item with a UUID id and appends it to getItems()", () => {
+      const item = list.addItem("hello");
       const uuidV4Regex =
         /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
       expect(item.id).toMatch(uuidV4Regex);
-      expect(item.text).toBe('hello');
+      expect(item.text).toBe("hello");
       expect(item.isSelected).toBe(false);
       expect(list.getItems()).toHaveLength(1);
       expect(list.getItems()[0]).toBe(item);
     });
 
     it('throws "Item text cannot be empty" when given an empty string', () => {
-      expect(() => list.addItem('')).toThrow('Item text cannot be empty');
+      expect(() => list.addItem("")).toThrow("Item text cannot be empty");
     });
 
     it('throws "Item text cannot be empty" when given whitespace-only text', () => {
-      expect(() => list.addItem('   ')).toThrow('Item text cannot be empty');
+      expect(() => list.addItem("   ")).toThrow("Item text cannot be empty");
     });
 
-    it('trims text before storing', () => {
-      const item = list.addItem('  hello  ');
-      expect(item.text).toBe('hello');
+    it("trims text before storing", () => {
+      const item = list.addItem("  hello  ");
+      expect(item.text).toBe("hello");
     });
   });
 
-  describe('deleteSelected', () => {
+  describe("deleteSelected", () => {
     it('throws "No items selected" when no items are selected', () => {
-      list.addItem('a');
-      list.addItem('b');
-      expect(() => list.deleteSelected()).toThrow('No items selected');
+      list.addItem("a");
+      list.addItem("b");
+      expect(() => list.deleteSelected()).toThrow("No items selected");
     });
 
     it('throws "No items selected" when list is empty', () => {
-      expect(() => list.deleteSelected()).toThrow('No items selected');
+      expect(() => list.deleteSelected()).toThrow("No items selected");
     });
 
-    it('removes all selected items and returns them with correct original indices', () => {
-      const a = list.addItem('a'); // index 0
-      const b = list.addItem('b'); // index 1
-      const c = list.addItem('c'); // index 2
-      const d = list.addItem('d'); // index 3
-      const e = list.addItem('e'); // index 4
+    it("removes all selected items and returns them with correct original indices", () => {
+      const a = list.addItem("a"); // index 0
+      const b = list.addItem("b"); // index 1
+      const c = list.addItem("c"); // index 2
+      const d = list.addItem("d"); // index 3
+      const e = list.addItem("e"); // index 4
 
       // Select items at indices 0, 2, 4
       list.toggleItem(a.id);
@@ -64,7 +64,9 @@ describe('TextList', () => {
       expect(removed).toHaveLength(3);
 
       // Each entry carries the pre-removal index
-      const removedById = Object.fromEntries(removed.map((r) => [r.item.id, r]));
+      const removedById = Object.fromEntries(
+        removed.map((r) => [r.item.id, r])
+      );
       expect(removedById[a.id].index).toBe(0);
       expect(removedById[c.id].index).toBe(2);
       expect(removedById[e.id].index).toBe(4);
@@ -76,11 +78,11 @@ describe('TextList', () => {
     });
   });
 
-  describe('deleteById', () => {
-    it('removes the correct item and returns it with its original index', () => {
-      const a = list.addItem('a'); // index 0
-      const b = list.addItem('b'); // index 1
-      const c = list.addItem('c'); // index 2
+  describe("deleteById", () => {
+    it("removes the correct item and returns it with its original index", () => {
+      const a = list.addItem("a"); // index 0
+      const b = list.addItem("b"); // index 1
+      const c = list.addItem("c"); // index 2
 
       const result = list.deleteById(b.id);
 
@@ -91,16 +93,16 @@ describe('TextList', () => {
     });
 
     it('throws "Item not found" for an unknown id', () => {
-      list.addItem('a');
-      expect(() => list.deleteById('nonexistent-id')).toThrow('Item not found');
+      list.addItem("a");
+      expect(() => list.deleteById("nonexistent-id")).toThrow("Item not found");
     });
   });
 
-  describe('selectItem', () => {
-    it('deselects all other items and selects only the target', () => {
-      const a = list.addItem('a');
-      const b = list.addItem('b');
-      const c = list.addItem('c');
+  describe("selectItem", () => {
+    it("deselects all other items and selects only the target", () => {
+      const a = list.addItem("a");
+      const b = list.addItem("b");
+      const c = list.addItem("c");
 
       // Pre-select a and b via toggle (multi-select)
       list.toggleItem(a.id);
@@ -118,11 +120,11 @@ describe('TextList', () => {
     });
   });
 
-  describe('toggleItem', () => {
-    it('toggles only the target item and does not affect others', () => {
-      const a = list.addItem('a');
-      const b = list.addItem('b');
-      const c = list.addItem('c');
+  describe("toggleItem", () => {
+    it("toggles only the target item and does not affect others", () => {
+      const a = list.addItem("a");
+      const b = list.addItem("b");
+      const c = list.addItem("c");
 
       // Start: all unselected
       list.toggleItem(b.id);
@@ -144,45 +146,53 @@ describe('TextList', () => {
     });
   });
 
-  describe('restoreItem', () => {
-    it('re-inserts an item at index 0, shifting existing items', () => {
-      const a = list.addItem('a');
-      const b = list.addItem('b');
+  describe("restoreItem", () => {
+    it("re-inserts an item at index 0, shifting existing items", () => {
+      const a = list.addItem("a");
+      const b = list.addItem("b");
 
-      const ghost: ListItem = { id: 'ghost-id', text: 'ghost', isSelected: false };
+      const ghost: ListItem = {
+        id: "ghost-id",
+        text: "ghost",
+        isSelected: false,
+      };
       list.restoreItem(ghost, 0);
 
       const items = list.getItems();
       expect(items).toHaveLength(3);
-      expect(items[0].id).toBe('ghost-id');
+      expect(items[0].id).toBe("ghost-id");
       expect(items[1].id).toBe(a.id);
       expect(items[2].id).toBe(b.id);
     });
 
-    it('re-inserts an item at the specified index in the middle of the list', () => {
-      const a = list.addItem('a');
-      const b = list.addItem('b');
-      const c = list.addItem('c');
+    it("re-inserts an item at the specified index in the middle of the list", () => {
+      const a = list.addItem("a");
+      const b = list.addItem("b");
+      const c = list.addItem("c");
 
-      const ghost: ListItem = { id: 'ghost-id', text: 'ghost', isSelected: false };
+      const ghost: ListItem = {
+        id: "ghost-id",
+        text: "ghost",
+        isSelected: false,
+      };
       list.restoreItem(ghost, 2);
 
       const items = list.getItems();
       expect(items).toHaveLength(4);
       expect(items[0].id).toBe(a.id);
       expect(items[1].id).toBe(b.id);
-      expect(items[2].id).toBe('ghost-id');
+      expect(items[2].id).toBe("ghost-id");
       expect(items[3].id).toBe(c.id);
     });
   });
 
-  describe('deleteSelected + restoreItem round-trip', () => {
-    it('restores list to original state after deleteSelected + ascending-order restoreItem', () => {
-      const a = list.addItem('a'); // 0
-      const _b = list.addItem('b'); // 1
-      const c = list.addItem('c'); // 2
-      const _d = list.addItem('d'); // 3
-      const e = list.addItem('e'); // 4
+  describe("deleteSelected + restoreItem round-trip", () => {
+    it("restores list to original state after deleteSelected + ascending-order restoreItem", () => {
+      const a = list.addItem("a"); // 0
+      const _b = list.addItem("b"); // 1
+      const c = list.addItem("c"); // 2
+      const _d = list.addItem("d"); // 3
+      const e = list.addItem("e"); // 4
 
       const originalSnapshot = list.getItems().map((i) => ({ ...i }));
 

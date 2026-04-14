@@ -1,5 +1,4 @@
-import type { ListRepository } from '@repo/core';
-import type { TextList } from '@repo/core';
+import type { ListRepository, TextList } from "@repo/core";
 
 export class InMemoryListRepository implements ListRepository {
   private stored: TextList | null = null;

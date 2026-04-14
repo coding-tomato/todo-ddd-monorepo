@@ -1,11 +1,17 @@
-import { Component } from '../shared/Component.js';
-import { LocalStorageListRepository, CommandHistory, loadList,
-         AddItemCommand, DeleteSelectedCommand, DeleteByIdCommand } from '@repo/core';
-import { ItemListComponent } from '../ItemListComponent/ItemListComponent.js';
-import { ActionBarComponent } from '../ActionBarComponent/ActionBarComponent.js';
-import { AddItemModal } from '../AddItemModal/AddItemModal.js';
-import { withErrorHandling } from '../../utils/errorHandler.js';
-import './AppComponent.css';
+import {
+  AddItemCommand,
+  CommandHistory,
+  DeleteByIdCommand,
+  DeleteSelectedCommand,
+  LocalStorageListRepository,
+  loadList,
+} from "@repo/core";
+import { withErrorHandling } from "../../utils/errorHandler.js";
+import { ActionBarComponent } from "../ActionBarComponent/ActionBarComponent.js";
+import { AddItemModal } from "../AddItemModal/AddItemModal.js";
+import { ItemListComponent } from "../ItemListComponent/ItemListComponent.js";
+import { Component } from "../shared/Component.js";
+import "./AppComponent.css";
 
 export class AppComponent extends Component {
   constructor($root, repo = null) {
@@ -46,40 +52,52 @@ export class AppComponent extends Component {
   }
   _initComponents() {
     this._itemList = new ItemListComponent(
-      this.$root.querySelector('.item-list-container'),
+      this.$root.querySelector(".item-list-container"),
       {
-        onSelect: withErrorHandling((id) => { this._list.selectItem(id); this._renderAll(); }),
-        onToggle: withErrorHandling((id) => { this._list.toggleItem(id); this._renderAll(); }),
+        onSelect: withErrorHandling((id) => {
+          this._list.selectItem(id);
+          this._renderAll();
+        }),
+        onToggle: withErrorHandling((id) => {
+          this._list.toggleItem(id);
+          this._renderAll();
+        }),
         onDelete: withErrorHandling((id) => {
-          this._list = this._history.execute(new DeleteByIdCommand(this._list, id, this._repo));
+          this._list = this._history.execute(
+            new DeleteByIdCommand(this._list, id, this._repo)
+          );
           this._renderAll();
         }),
       }
     );
     this._actionBar = new ActionBarComponent(
-      this.$root.querySelector('.action-bar'),
+      this.$root.querySelector(".action-bar"),
       {
         onUndo: () => {
           const result = this._history.undo();
-          if (result) { this._list = result; this._renderAll(); }
+          if (result) {
+            this._list = result;
+            this._renderAll();
+          }
         },
         onDelete: () => {
-          this._list = this._history.execute(new DeleteSelectedCommand(this._list, this._repo));
+          this._list = this._history.execute(
+            new DeleteSelectedCommand(this._list, this._repo)
+          );
           this._renderAll();
         },
         onOpenAdd: () => this._modal.show(),
       }
     );
-    this._modal = new AddItemModal(
-      this.$root.querySelector('.modal-overlay'),
-      {
-        onAdd: (text) => {
-          this._list = this._history.execute(new AddItemCommand(this._list, text, this._repo));
-          this._renderAll();
-        },
-        onClose: () => this._modal.hide(),
-      }
-    );
+    this._modal = new AddItemModal(this.$root.querySelector(".modal-overlay"), {
+      onAdd: (text) => {
+        this._list = this._history.execute(
+          new AddItemCommand(this._list, text, this._repo)
+        );
+        this._renderAll();
+      },
+      onClose: () => this._modal.hide(),
+    });
   }
   _renderAll() {
     this._itemList.render(this._list);

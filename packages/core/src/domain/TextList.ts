@@ -1,5 +1,5 @@
-import type { ListItem } from './ListItem.js';
-import { createItemId } from './ListItem.js';
+import type { ListItem } from "./ListItem.js";
+import { createItemId } from "./ListItem.js";
 
 export class TextList {
   private items: ListItem[] = [];
@@ -10,8 +10,8 @@ export class TextList {
 
   addItem(text: string): ListItem {
     const trimmed = text.trim();
-    if (trimmed === '') {
-      throw new Error('Item text cannot be empty');
+    if (trimmed === "") {
+      throw new Error("Item text cannot be empty");
     }
     const item: ListItem = {
       id: createItemId(),
@@ -28,7 +28,7 @@ export class TextList {
       .filter(({ item }) => item.isSelected);
 
     if (selected.length === 0) {
-      throw new Error('No items selected');
+      throw new Error("No items selected");
     }
 
     const selectedIds = new Set(selected.map(({ item }) => item.id));
@@ -40,7 +40,7 @@ export class TextList {
   deleteById(id: string): { item: ListItem; index: number } {
     const index = this.items.findIndex((item) => item.id === id);
     if (index === -1) {
-      throw new Error('Item not found');
+      throw new Error("Item not found");
     }
     const [item] = this.items.splice(index, 1);
     return { item, index };
@@ -55,7 +55,7 @@ export class TextList {
 
   toggleItem(id: string): void {
     this.items = this.items.map((item) =>
-      item.id === id ? { ...item, isSelected: !item.isSelected } : item,
+      item.id === id ? { ...item, isSelected: !item.isSelected } : item
     );
   }
 

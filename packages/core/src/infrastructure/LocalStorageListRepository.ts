@@ -1,8 +1,8 @@
-import type { ListItem } from '../domain/ListItem.js';
-import { TextList } from '../domain/TextList.js';
-import type { ListRepository } from '../domain/repositories/ListRepository.js';
+import type { ListItem } from "../domain/ListItem.js";
+import type { ListRepository } from "../domain/repositories/ListRepository.js";
+import { TextList } from "../domain/TextList.js";
 
-const STORAGE_KEY = 'text-list-manager';
+const STORAGE_KEY = "text-list-manager";
 
 export class LocalStorageListRepository implements ListRepository {
   save(list: TextList): void {

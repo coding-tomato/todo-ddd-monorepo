@@ -1,4 +1,4 @@
-import type { TextList } from '../TextList.js';
+import type { TextList } from "../TextList.js";
 
 export interface ListRepository {
   save(list: TextList): void;

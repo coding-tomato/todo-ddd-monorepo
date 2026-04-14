@@ -1,10 +1,11 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import { App } from './components/App';
-import './styles/main.css';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { App } from "./components/App";
+import "./styles/main.css";
 
-// biome-ignore lint/style/noNonNullAssertion: root element is guaranteed to exist in index.html
-createRoot(document.getElementById('root')!).render(
+const rootElement = document.getElementById("root");
+if (!rootElement) throw new Error("Root element not found");
+createRoot(rootElement).render(
   <StrictMode>
     <App />
   </StrictMode>

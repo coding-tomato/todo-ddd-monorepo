@@ -1,20 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
 
 /* Design tokens + reset */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 :root {
-  --color-primary: #324BFF;
-  --color-surface: #FFFFFF;
-  --color-background: #F7F7F7;
-  --color-border: #CCCCCC;
+  --color-primary: #324bff;
+  --color-surface: #ffffff;
+  --color-background: #f7f7f7;
+  --color-border: #cccccc;
   --color-text: #333333;
-  --color-shadow: #0000001F;
-  --gradient-bg: linear-gradient(135deg, #A1C4FD 0%, #C2E9FB 100%);
+  --color-shadow: #0000001f;
+  --gradient-bg: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: var(--color-text);
   min-height: 100vh;
   background: var(--gradient-bg);
@@ -46,8 +52,8 @@ button:disabled {
 
 /* Error banner */
 .error-banner {
-  background: #FFF3CD;
-  border: 0.0625rem solid #FFEAA7;
+  background: #fff3cd;
+  border: 0.0625rem solid #ffeaa7;
   color: #856404;
   padding: 0.625rem 1rem;
   border-radius: 0.5rem;

@@ -1,3 +1,3 @@
-import { toHaveNoViolations } from 'vitest-axe/matchers';
+import { toHaveNoViolations } from "vitest-axe/matchers";
 
 expect.extend({ toHaveNoViolations });

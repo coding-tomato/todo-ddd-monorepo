@@ -1,18 +1,24 @@
-import { useState, useMemo } from 'react';
-import { LocalStorageListRepository } from '@repo/core';
-import type { ListRepository } from '@repo/core';
-import { useTextList } from '../hooks/useTextList';
-import { ErrorBoundary } from './ErrorBoundary/ErrorBoundary';
-import { ItemList } from './ItemList/ItemList';
-import { ActionBar } from './ActionBar/ActionBar';
-import { AddItemModal } from './AddItemModal/AddItemModal';
-import styles from './App.module.css';
+import type { ListRepository } from "@repo/core";
+import { LocalStorageListRepository } from "@repo/core";
+import { useMemo, useState } from "react";
+import { useTextList } from "../hooks/useTextList";
+import { ActionBar } from "./ActionBar/ActionBar";
+import { AddItemModal } from "./AddItemModal/AddItemModal";
+import styles from "./App.module.css";
+import { ErrorBoundary } from "./ErrorBoundary/ErrorBoundary";
+import { ItemList } from "./ItemList/ItemList";
 
 export function TextListApp({ repo }: { repo: ListRepository }) {
   const {
-    list, error, canUndo,
-    handleAddItem, handleDeleteSelected, handleDeleteById,
-    handleSelectItem, handleToggleItem, handleUndo,
+    list,
+    error,
+    canUndo,
+    handleAddItem,
+    handleDeleteSelected,
+    handleDeleteById,
+    handleSelectItem,
+    handleToggleItem,
+    handleUndo,
   } = useTextList(repo);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -22,11 +28,16 @@ export function TextListApp({ repo }: { repo: ListRepository }) {
         <ErrorBoundary>
           <h1 className={styles.heading}>This is a technical proof</h1>
           <p className={styles.description}>
-            Lorem ipsum dolor sit amet consectetur adipiscing, elit mus primis nec inceptos. Lacinia
-            habitasse arcu molestie maecenas cursus quam nunc, hendrerit posuere augue fames
-            dictumst placerat porttitor, dis mi pharetra vestibulum venenatis phasellus.
+            Lorem ipsum dolor sit amet consectetur adipiscing, elit mus primis
+            nec inceptos. Lacinia habitasse arcu molestie maecenas cursus quam
+            nunc, hendrerit posuere augue fames dictumst placerat porttitor, dis
+            mi pharetra vestibulum venenatis phasellus.
           </p>
-          {error && <div className={styles.errorBanner} role="alert">{error}</div>}
+          {error && (
+            <div className={styles.errorBanner} role="alert">
+              {error}
+            </div>
+          )}
           <ItemList
             items={list.getItems()}
             onSelect={handleSelectItem}
@@ -42,7 +53,10 @@ export function TextListApp({ repo }: { repo: ListRepository }) {
           />
           {isModalOpen && (
             <AddItemModal
-              onAdd={(text) => { handleAddItem(text); setIsModalOpen(false); }}
+              onAdd={(text) => {
+                handleAddItem(text);
+                setIsModalOpen(false);
+              }}
               onClose={() => setIsModalOpen(false)}
             />
           )}

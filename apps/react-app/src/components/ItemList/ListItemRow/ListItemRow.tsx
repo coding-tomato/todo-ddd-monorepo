@@ -1,5 +1,5 @@
-import type { ListItem } from '@repo/core';
-import styles from './ListItemRow.module.css';
+import type { ListItem } from "@repo/core";
+import styles from "./ListItemRow.module.css";
 
 interface ListItemRowProps {
   item: ListItem;
@@ -8,10 +8,15 @@ interface ListItemRowProps {
   onDelete: (id: string) => void;
 }
 
-export function ListItemRow({ item, onSelect, onToggle, onDelete }: ListItemRowProps) {
+export function ListItemRow({
+  item,
+  onSelect,
+  onToggle,
+  onDelete,
+}: ListItemRowProps) {
   return (
     <li
-      className={`${styles.row}${item.isSelected ? ` ${styles.selected}` : ''}`}
+      className={`${styles.row}${item.isSelected ? ` ${styles.selected}` : ""}`}
       data-selected={item.isSelected || undefined}
       onClick={(e) => {
         if (e.ctrlKey || e.metaKey) {
@@ -21,7 +26,7 @@ export function ListItemRow({ item, onSelect, onToggle, onDelete }: ListItemRowP
         }
       }}
       onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') onSelect(item.id);
+        if (e.key === "Enter" || e.key === " ") onSelect(item.id);
       }}
       onDoubleClick={() => onDelete(item.id)}
     >

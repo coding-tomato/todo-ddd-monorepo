@@ -1,9 +1,9 @@
-import { describe, it, expect, vi } from 'vitest';
-import { CommandHistory } from './CommandHistory.js';
-import { AddItemCommand } from './commands/AddItemCommand.js';
-import { TextList } from '../domain/TextList.js';
-import { InMemoryListRepository } from '../__tests__/InMemoryListRepository.js';
-import type { Command } from './Command.js';
+import { describe, expect, it, vi } from "vitest";
+import { InMemoryListRepository } from "../__tests__/InMemoryListRepository.js";
+import { TextList } from "../domain/TextList.js";
+import type { Command } from "./Command.js";
+import { CommandHistory } from "./CommandHistory.js";
+import { AddItemCommand } from "./commands/AddItemCommand.js";
 
 /** Build a fake Command that tracks calls without touching a real list. */
 function makeStubCommand(list: TextList): Command {
@@ -13,8 +13,8 @@ function makeStubCommand(list: TextList): Command {
   };
 }
 
-describe('CommandHistory', () => {
-  it('execute() returns the post-mutation TextList (the value from command.execute)', () => {
+describe("CommandHistory", () => {
+  it("execute() returns the post-mutation TextList (the value from command.execute)", () => {
     const history = new CommandHistory();
     const list = new TextList();
     const cmd = makeStubCommand(list);
@@ -24,24 +24,24 @@ describe('CommandHistory', () => {
     expect(result).toBe(list);
   });
 
-  it('canUndo is false initially', () => {
+  it("canUndo is false initially", () => {
     const history = new CommandHistory();
     expect(history.canUndo).toBe(false);
   });
 
-  it('canUndo is true after first execute()', () => {
+  it("canUndo is true after first execute()", () => {
     const history = new CommandHistory();
     const list = new TextList();
     history.execute(makeStubCommand(list));
     expect(history.canUndo).toBe(true);
   });
 
-  it('undo() returns null when stack is empty', () => {
+  it("undo() returns null when stack is empty", () => {
     const history = new CommandHistory();
     expect(history.undo()).toBeNull();
   });
 
-  it('undo() returns the restored list and decrements stack', () => {
+  it("undo() returns the restored list and decrements stack", () => {
     const history = new CommandHistory();
     const list = new TextList();
     const cmd = makeStubCommand(list);
@@ -56,7 +56,7 @@ describe('CommandHistory', () => {
     expect(history.canUndo).toBe(false);
   });
 
-  it('stack cap: executing 51 commands keeps only 50; the 51st undo returns null', () => {
+  it("stack cap: executing 51 commands keeps only 50; the 51st undo returns null", () => {
     const history = new CommandHistory();
     const repo = new InMemoryListRepository();
     const list = new TextList();

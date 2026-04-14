@@ -1,6 +1,6 @@
-import type { ListItem } from '@repo/core';
-import { ListItemRow } from './ListItemRow/ListItemRow';
-import styles from './ItemList.module.css';
+import type { ListItem } from "@repo/core";
+import styles from "./ItemList.module.css";
+import { ListItemRow } from "./ListItemRow/ListItemRow";
 
 interface ItemListProps {
   items: ReadonlyArray<ListItem>;
@@ -9,7 +9,12 @@ interface ItemListProps {
   onDelete: (id: string) => void;
 }
 
-export function ItemList({ items, onSelect, onToggle, onDelete }: ItemListProps) {
+export function ItemList({
+  items,
+  onSelect,
+  onToggle,
+  onDelete,
+}: ItemListProps) {
   return (
     <ul className={styles.itemList}>
       {items.map((item) => (

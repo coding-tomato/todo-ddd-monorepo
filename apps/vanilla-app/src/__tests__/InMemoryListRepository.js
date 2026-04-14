@@ -1,5 +1,3 @@
-
-
 export class InMemoryListRepository {
   constructor() {
     this._saved = null;

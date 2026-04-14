@@ -1,6 +1,6 @@
-import type { ListItem } from '../../domain/ListItem.js';
-import type { TextList } from '../../domain/TextList.js';
-import type { ListRepository } from '../../domain/repositories/ListRepository.js';
+import type { ListItem } from "../../domain/ListItem.js";
+import type { ListRepository } from "../../domain/repositories/ListRepository.js";
+import type { TextList } from "../../domain/TextList.js";
 
 export class AddItemCommand {
   private addedId: string | null = null;
@@ -8,7 +8,7 @@ export class AddItemCommand {
   constructor(
     private readonly list: TextList,
     private readonly text: string,
-    private readonly repo: ListRepository,
+    private readonly repo: ListRepository
   ) {}
 
   execute(): TextList {
@@ -20,7 +20,7 @@ export class AddItemCommand {
 
   undo(): TextList {
     if (this.addedId === null) {
-      throw new Error('Cannot undo: execute() was not called');
+      throw new Error("Cannot undo: execute() was not called");
     }
     this.list.deleteById(this.addedId);
     this.repo.save(this.list);

@@ -1,4 +1,4 @@
-import type { TextList } from '../domain/TextList.js';
+import type { TextList } from "../domain/TextList.js";
 
 export interface Command {
   execute(): TextList;

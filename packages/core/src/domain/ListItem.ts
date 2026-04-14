@@ -4,7 +4,7 @@ export interface ListItem {
   isSelected: boolean;
 }
 
-export type ItemId = string & { readonly __brand: 'ItemId' };
+export type ItemId = string & { readonly __brand: "ItemId" };
 
 export function createItemId(): ItemId {
   return crypto.randomUUID() as ItemId;

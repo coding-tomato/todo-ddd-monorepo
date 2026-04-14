@@ -1,13 +1,13 @@
-import type { ListItem } from '../../domain/ListItem.js';
-import type { TextList } from '../../domain/TextList.js';
-import type { ListRepository } from '../../domain/repositories/ListRepository.js';
+import type { ListItem } from "../../domain/ListItem.js";
+import type { ListRepository } from "../../domain/repositories/ListRepository.js";
+import type { TextList } from "../../domain/TextList.js";
 
 export class DeleteSelectedCommand {
   private removed: { item: ListItem; index: number }[] = [];
 
   constructor(
     private readonly list: TextList,
-    private readonly repo: ListRepository,
+    private readonly repo: ListRepository
   ) {}
 
   execute(): TextList {

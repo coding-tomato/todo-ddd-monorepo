@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import styles from './AddItemModal.module.css';
+import { useState } from "react";
+import styles from "./AddItemModal.module.css";
 
 interface AddItemModalProps {
   onAdd: (text: string) => void;
@@ -7,26 +7,35 @@ interface AddItemModalProps {
 }
 
 export function AddItemModal({ onAdd, onClose }: AddItemModalProps) {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = () => {
     const trimmed = inputValue.trim();
     if (!trimmed) return;
     onAdd(trimmed);
-    setInputValue('');
+    setInputValue("");
   };
 
   return (
     <div className={styles.overlay}>
-      <div className={styles.modal} role="dialog" aria-modal="true" aria-labelledby="add-item-modal-title">
-        <h2 className={styles.title} id="add-item-modal-title">Add item to list</h2>
+      <div
+        className={styles.modal}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="add-item-modal-title"
+      >
+        <h2 className={styles.title} id="add-item-modal-title">
+          Add item to list
+        </h2>
         <input
           className={styles.input}
           id="add-item-modal-input"
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          onKeyDown={(e) => { if (e.key === 'Enter') handleSubmit(); }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") handleSubmit();
+          }}
           placeholder="Type the text here..."
           aria-label="Item text"
         />
@@ -35,7 +44,7 @@ export function AddItemModal({ onAdd, onClose }: AddItemModalProps) {
             type="button"
             className={styles.addBtn}
             onClick={handleSubmit}
-            disabled={inputValue.trim() === ''}
+            disabled={inputValue.trim() === ""}
           >
             ADD
           </button>

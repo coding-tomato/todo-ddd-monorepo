@@ -1,5 +1,5 @@
-import type { TextList } from '../domain/TextList.js';
-import type { Command } from './Command.js';
+import type { TextList } from "../domain/TextList.js";
+import type { Command } from "./Command.js";
 
 export class CommandHistory {
   private stack: Command[] = [];
