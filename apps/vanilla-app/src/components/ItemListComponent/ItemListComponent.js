@@ -14,7 +14,7 @@ export class ItemListComponent extends Component {
     ul.className = 'item-list';
     list.getItems().forEach(item => {
       const li = document.createElement('li');
-      li.className = 'item-list__item' + (item.isSelected ? ' item-list__item--selected' : '');
+      li.className = `item-list__item${item.isSelected ? ' item-list__item--selected' : ''}`;
       li.textContent = item.text;
       li.dataset.id = item.id;
       li.addEventListener('click', (e) => {

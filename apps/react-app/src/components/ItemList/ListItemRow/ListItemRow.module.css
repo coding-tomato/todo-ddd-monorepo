@@ -12,11 +12,11 @@
   color: white;
 }
 
-.row.selected .text {
-  color: white;
-}
-
 .text {
   flex: 1;
   color: var(--color-text);
+}
+
+.row.selected .text {
+  color: white;
 }

@@ -1,6 +1,6 @@
 import { useState, useCallback, useReducer } from 'react';
 import {
-  TextList,
+  type TextList,
   CommandHistory,
   AddItemCommand,
   DeleteSelectedCommand,
@@ -25,7 +25,7 @@ export function useTextList(repo: ListRepository) {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong, please try again');
     }
-  }, [list, history, repo, forceUpdate]);
+  }, [list, history, repo]);
 
   const handleDeleteSelected = useCallback(() => {
     try {
@@ -35,7 +35,7 @@ export function useTextList(repo: ListRepository) {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong, please try again');
     }
-  }, [list, history, repo, forceUpdate]);
+  }, [list, history, repo]);
 
   const handleDeleteById = useCallback((id: string) => {
     try {
@@ -45,17 +45,17 @@ export function useTextList(repo: ListRepository) {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong, please try again');
     }
-  }, [list, history, repo, forceUpdate]);
+  }, [list, history, repo]);
 
   const handleSelectItem = useCallback((id: string) => {
     list.selectItem(id);
     forceUpdate();
-  }, [list, forceUpdate]);
+  }, [list]);
 
   const handleToggleItem = useCallback((id: string) => {
     list.toggleItem(id);
     forceUpdate();
-  }, [list, forceUpdate]);
+  }, [list]);
 
   const handleUndo = useCallback(() => {
     try {
@@ -67,7 +67,7 @@ export function useTextList(repo: ListRepository) {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong, please try again');
     }
-  }, [history, forceUpdate]);
+  }, [history]);
 
   return {
     list,

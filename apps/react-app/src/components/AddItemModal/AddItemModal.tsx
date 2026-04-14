@@ -27,19 +27,19 @@ export function AddItemModal({ onAdd, onClose }: AddItemModalProps) {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => { if (e.key === 'Enter') handleSubmit(); }}
-          autoFocus
           placeholder="Type the text here..."
           aria-label="Item text"
         />
         <div className={styles.actions}>
           <button
+            type="button"
             className={styles.addBtn}
             onClick={handleSubmit}
             disabled={inputValue.trim() === ''}
           >
             ADD
           </button>
-          <button className={styles.cancelBtn} onClick={onClose}>
+          <button type="button" className={styles.cancelBtn} onClick={onClose}>
             CANCEL
           </button>
         </div>

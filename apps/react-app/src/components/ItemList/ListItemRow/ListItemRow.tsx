@@ -20,6 +20,9 @@ export function ListItemRow({ item, onSelect, onToggle, onDelete }: ListItemRowP
           onSelect(item.id);
         }
       }}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') onSelect(item.id);
+      }}
       onDoubleClick={() => onDelete(item.id)}
     >
       <span className={styles.text}>{item.text}</span>

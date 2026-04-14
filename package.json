@@ -7,5 +7,8 @@
     "dev:react": "pnpm --filter react-app dev",
     "dev:vanilla": "pnpm --filter vanilla-app dev",
     "lint": "pnpm -r lint"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.11"
   }
 }

@@ -17,7 +17,8 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "lint": "biome lint ."
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^1.0.0",

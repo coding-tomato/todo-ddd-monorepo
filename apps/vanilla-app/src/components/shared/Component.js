@@ -4,5 +4,5 @@ export class Component {
     this.$ = {};
   }
   _bindEvents() {}
-  render(list) {}
+  render(_list) {}
 }

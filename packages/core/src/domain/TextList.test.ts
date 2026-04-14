@@ -179,9 +179,9 @@ describe('TextList', () => {
   describe('deleteSelected + restoreItem round-trip', () => {
     it('restores list to original state after deleteSelected + ascending-order restoreItem', () => {
       const a = list.addItem('a'); // 0
-      const b = list.addItem('b'); // 1
+      const _b = list.addItem('b'); // 1
       const c = list.addItem('c'); // 2
-      const d = list.addItem('d'); // 3
+      const _d = list.addItem('d'); // 3
       const e = list.addItem('e'); // 4
 
       const originalSnapshot = list.getItems().map((i) => ({ ...i }));

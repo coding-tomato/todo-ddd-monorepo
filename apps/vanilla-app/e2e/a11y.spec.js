@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { readFileSync } from 'fs';
-import { createRequire } from 'module';
+import { readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 
 const _require = createRequire(import.meta.url);
 const axeSource = readFileSync(_require.resolve('axe-core'), 'utf-8');

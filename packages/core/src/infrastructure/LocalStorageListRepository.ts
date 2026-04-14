@@ -19,7 +19,9 @@ export class LocalStorageListRepository implements ListRepository {
       if (!raw) return null;
       const items = JSON.parse(raw);
       const list = new TextList();
-      items.forEach((item: ListItem, index: number) => list.restoreItem(item, index));
+      items.forEach((item: ListItem, index: number) => {
+        list.restoreItem(item, index);
+      });
       return list;
     } catch {
       return null;

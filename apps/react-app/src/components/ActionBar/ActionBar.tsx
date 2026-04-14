@@ -12,6 +12,7 @@ export function ActionBar({ canUndo, hasSelection, onUndo, onDeleteSelected, onO
   return (
     <div className={styles.actionBar}>
       <button
+        type="button"
         className={styles.undoBtn}
         onClick={onUndo}
         disabled={!canUndo}
@@ -20,6 +21,7 @@ export function ActionBar({ canUndo, hasSelection, onUndo, onDeleteSelected, onO
         ↩
       </button>
       <button
+        type="button"
         className={styles.deleteBtn}
         onClick={onDeleteSelected}
         disabled={!hasSelection}
@@ -27,6 +29,7 @@ export function ActionBar({ canUndo, hasSelection, onUndo, onDeleteSelected, onO
         DELETE
       </button>
       <button
+        type="button"
         className={styles.addBtn}
         onClick={onOpenAdd}
       >

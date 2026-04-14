@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { readFileSync } from 'fs';
-import { createRequire } from 'module';
+import { readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 
 const _require = createRequire(import.meta.url);
 const axeSource = readFileSync(_require.resolve('axe-core'), 'utf-8');
@@ -8,6 +8,7 @@ const axeSource = readFileSync(_require.resolve('axe-core'), 'utf-8');
 async function runAxe(page: Parameters<Parameters<typeof test>[1]>[0]['page']) {
   await page.evaluate(axeSource);
   return page.evaluate(async () => {
+    // biome-ignore lint/suspicious/noExplicitAny: axe is injected at runtime via evaluate, no typings available
     const results = await (window as any).axe.run();
     return results.violations as { id: string; description: string }[];
   });
