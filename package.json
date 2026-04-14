@@ -4,8 +4,8 @@
   "scripts": {
     "build": "pnpm --filter @repo/core build && pnpm -r --filter !@repo/core build",
     "test": "pnpm -r test",
-    "dev:react": "pnpm --filter react-app dev",
-    "dev:vanilla": "pnpm --filter vanilla-app dev",
+    "dev:react": "pnpm --filter @repo/core build && pnpm --filter react-app dev",
+    "dev:vanilla": "pnpm --filter @repo/core build && pnpm --filter vanilla-app dev",
     "lint": "pnpm -r lint"
   },
   "devDependencies": {
